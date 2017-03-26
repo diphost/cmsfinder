@@ -41,5 +41,6 @@ TODO
 * Ansible role (good idea for outsourcing automation :)
 * Improve some check algorithms
 
--- 
+--
 [![UNLICENSE](noc.png)](UNLICENSE)
+
