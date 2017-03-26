@@ -1,0 +1,17 @@
+{
+    "fingerprints": [
+        {
+            "file": "e107_config.php"
+        }
+    ],
+    "versions": [
+        {
+            "file": "admin/ver.php",
+            "regex": "e107_version.*\"(?P<version>.*)\";"
+        },
+        {
+            "file": "e107_admin/ver.php",
+            "regex": "e107_version.*\"(?P<version>.*)\";"
+        }
+    ]
+}

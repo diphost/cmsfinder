@@ -1,0 +1,15 @@
+{
+    "fingerprints": [
+        {
+            "file": "system/defines.php",
+            "signature": "grav"
+        }
+    ],
+    "versions": [
+        {
+            "file": "system/defines.php",
+            "multiline": 1,
+            "regex": "define.*GRAV_VERSION', '(?P<version>.*)'"
+        }
+    ]
+}

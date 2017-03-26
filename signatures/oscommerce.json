@@ -1,0 +1,27 @@
+{
+    "fingerprints": [
+        {
+            "exclude": "zen-cart|loaded7",
+            "file": "admin/includes/filenames.php",
+            "signature": "osCommerce"
+        },
+        {
+            "file": "OM/Core/OSCOM.php",
+            "signature": "osCommerce"
+        }
+    ],
+    "versions": [
+        {
+            "file": "includes/version.php",
+            "flatfile": 1
+        },
+        {
+            "file": "OM/version.txt",
+            "flatfile": 1
+        },
+        {
+            "file": "index.php",
+            "regex": "Id: index.php,v (?P<version>[0-9.]*)"
+        }
+    ]
+}

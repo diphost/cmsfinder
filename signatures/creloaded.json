@@ -1,0 +1,23 @@
+{
+    "fingerprints": [
+        {
+            "file": "/admin/includes/version.php",
+            "signature": "CRE Loaded"
+        },
+        {
+            "file": "checkout.php",
+            "signature": "loaded7"
+        }
+    ],
+    "versions": [
+        {
+            "file": "/admin/includes/version.php",
+            "multiline": 1,
+            "regex": "INSTALLED_(?:VERSION_MAJOR|VERSION_MINOR|PATCH)', '(?P<version>.*)'"
+        },
+        {
+            "file": "/includes/version.txt",
+            "regex": "^(?P<version>.*)\\|"
+        }
+    ]
+}

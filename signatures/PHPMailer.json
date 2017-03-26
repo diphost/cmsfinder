@@ -1,0 +1,15 @@
+{
+    "fingerprints": [
+        {
+            "exclude": "Joomla.Legacy",
+            "file": "class.phpmailer.php",
+            "signature": "phpmailer"
+        }
+    ],
+    "versions": [
+        {
+            "file": "class.phpmailer.php",
+            "regex": "[public|var] .*Version += [\"'](?P<version>.*)[\"']"
+        }
+    ]
+}

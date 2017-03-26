@@ -1,0 +1,55 @@
+{
+    "fingerprints": [
+        {
+            "file": "includes/joomla.php"
+        },
+        {
+            "file": "includes/version.php",
+            "signature": "Joomla!"
+        },
+        {
+            "file": "libraries/cms/version/version.php",
+            "signature": "Joomla.(Libraries|Site)"
+        }
+    ],
+    "last": {
+        "1.0": "1.0.15",
+        "1.5": "1.5.26",
+        "1.6": "1.6.6",
+        "1.7": "1.7.5",
+        "2.5": "2.5.28",
+        "3.0": "3.0.4",
+        "3.1": "3.1.6",
+        "3.2": "3.2.7",
+        "3.3": "3.3.6",
+        "3.4": "3.4.8",
+        "3.5": "3.5.1",
+        "3.6": "3.6.5",
+        "last": "3.6.5"
+    },
+    "support": {
+        "3.6": "current",
+        "eol": "3.7.0"
+    },
+    "versions": [
+        {
+            "file": "CHANGELOG.php",
+            "regex": "-* (?P<version>.*) Stable Release"
+        },
+        {
+            "file": "includes/version.php",
+            "multiline": 1,
+            "regex": "(?:RELEASE|DEV_LEVEL)\\s*=\\s*'(?P<version>.*)'"
+        },
+        {
+            "file": "libraries/cms/version/version.php",
+            "multiline": 1,
+            "regex": "(?:RELEASE|DEV_LEVEL)\\s*=\\s*'(?P<version>.*)'"
+        },
+        {
+            "file": "libraries/joomla/version.php",
+            "multiline": 1,
+            "regex": "(?:\\$RELEASE|\\$DEV_LEVEL)\\s*=\\s*'(?P<version>.*)'"
+        }
+    ]
+}

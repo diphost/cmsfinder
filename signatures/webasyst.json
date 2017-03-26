@@ -1,0 +1,14 @@
+{
+    "fingerprints": [
+        {
+            "file": "wa-system/waSystem.class.php",
+            "signature": "Webasyst"
+        }
+    ],
+    "versions": [
+        {
+            "file": "wa-system/webasyst/lib/config/app.php",
+            "regex": "'version'\\s*=>\\s*'(?P<version>.*)'"
+        }
+    ]
+}

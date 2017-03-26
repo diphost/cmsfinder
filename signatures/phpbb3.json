@@ -1,0 +1,15 @@
+{
+    "fingerprints": [
+        {
+            "file": "includes/bbcode.php",
+            "signature": "phpBB"
+        }
+    ],
+    "versions": [
+        {
+            "file": "includes/constants.php",
+            "filter": "-PL",
+            "regex": "PHPBB_VERSION', '(?P<version>.*)'"
+        }
+    ]
+}

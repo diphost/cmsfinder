@@ -1,0 +1,26 @@
+{
+    "fingerprints": [
+        {
+            "file": "engine/inc/include/init.php",
+            "signature": "DATALIFEENGINE"
+        },
+        {
+            "file": "engine/engine.php",
+            "signature": "DataLife Engine"
+        }
+    ],
+    "versions": [
+        {
+            "file": "engine/inc/include/init.php",
+            "regex": "define\\('VERSIONID', [\"|'](?P<version>[0-9.]*)[\"|']\\)"
+        },
+        {
+            "file": "engine/data/config.php",
+            "regex": "'version_id'\\s+=>\\s+[\"|'](?P<version>[0-9.]*)[\"|']"
+        },
+        {
+            "file": "engine/inc/options.php",
+            "regex": "\\$save_con\\['version_id'\\]\\s*=\\s*[\"|'](?P<version>[0-9.]*)[\"|']"
+        }
+    ]
+}

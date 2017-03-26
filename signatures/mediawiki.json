@@ -1,0 +1,14 @@
+{
+    "fingerprints": [
+        {
+            "file": "includes/DefaultSettings.php",
+            "signature": "mediawiki"
+        }
+    ],
+    "versions": [
+        {
+            "file": "includes/DefaultSettings.php",
+            "regex": "\\$wgVersion\\s*=\\s*'(?P<version>.*)'"
+        }
+    ]
+}

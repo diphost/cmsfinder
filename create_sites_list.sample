@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Create "DocumentRoot" list of server sites
+
+# PeterHost.Ru and DiPHOST.Ru example
+#find /home -maxdepth 4 -type d -name public_html -path "/home/*/www/*" -print
+#find /home -maxdepth 4 -type d -name webapp -path "/home/*/www/*" -print
+
+# FastPanel example
+#find /var/www/ -maxdepth 3 -type d  -path "/var/www/*/www/*" -print
+
+# ISPManager example
+#find /var/www/ -maxdepth 4 -type d  -path "/var/www/*/data/www/*" -print

@@ -1,0 +1,21 @@
+{
+    "fingerprints": [
+        {
+            "file": "sys-temp/runtime-cache/registry",
+            "signature": "modules/autoupdate/system_version"
+        },
+        {
+            "file": "README.md",
+            "signature": "UMI.CMS"
+        }
+    ],
+    "last": {
+        "last": "2.14"
+    },
+    "versions": [
+        {
+            "file": "sys-temp/runtime-cache/registry",
+            "regex": "\"modules/autoupdate/system_version\";i:(\\d+);.*?i:\\1;s:\\d+:\"(?P<version>[^\\\"]+)\""
+        }
+    ]
+}

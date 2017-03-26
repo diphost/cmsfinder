@@ -1,0 +1,15 @@
+{
+    "fingerprints": [
+        {
+            "file": "app/Mage.php",
+            "signature": "magentocommerce"
+        }
+    ],
+    "versions": [
+        {
+            "file": "app/Mage.php",
+            "multiline": 1,
+            "regex": "(?:'major'|'minor'|'revision'|'patch').* => '(?P<version>.*)'"
+        }
+    ]
+}

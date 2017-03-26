@@ -1,0 +1,14 @@
+{
+    "fingerprints": [
+        {
+            "file": "identification.php",
+            "signature": "Piwigo"
+        }
+    ],
+    "versions": [
+        {
+            "file": "include/constants.php",
+            "regex": "PHPWG_VERSION', '(?P<version>.*)'"
+        }
+    ]
+}

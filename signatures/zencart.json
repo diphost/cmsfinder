@@ -1,0 +1,15 @@
+{
+    "fingerprints": [
+        {
+            "file": "includes/filenames.php",
+            "signature": "Zen Cart"
+        }
+    ],
+    "versions": [
+        {
+            "file": "includes/version.php",
+            "multiline": 1,
+            "regex": "PROJECT_VERSION_(?:MAJOR|MINOR)',\\s*'(?P<version>.*)'"
+        }
+    ]
+}

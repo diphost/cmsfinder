@@ -1,0 +1,14 @@
+{
+    "fingerprints": [
+        {
+            "file": "includes/mambofunc.php"
+        }
+    ],
+    "versions": [
+        {
+            "file": "includes/version.php",
+            "multiline": 1,
+            "regex": "(?:\\$RELEASE|\\$DEV_LEVEL) = '(?P<version>.*)'"
+        }
+    ]
+}

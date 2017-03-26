@@ -1,0 +1,15 @@
+{
+    "fingerprints": [
+        {
+            "file": "admincp/diagnostic.php",
+            "signature": "vbulletin"
+        }
+    ],
+    "versions": [
+        {
+            "file": "admincp/diagnostic.php",
+            "filter": " Patch Level ",
+            "regex": "sum_versions.*vbulletin.*=> '(?P<version>.*)'"
+        }
+    ]
+}

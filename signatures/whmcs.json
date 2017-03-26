@@ -1,0 +1,18 @@
+{
+    "fingerprints": [
+        {
+            "file": "includes/classes/WHMCS/Admin.php",
+            "signature": "WHMCS"
+        }
+    ],
+    "versions": [
+        {
+            "file": "init.php",
+            "regex": "\\* Version\\: (?P<version>[0-9.]*)"
+        },
+        {
+            "file": "announcements.php",
+            "regex": "Version: (?P<version>[0-9.]*)"
+        }
+    ]
+}

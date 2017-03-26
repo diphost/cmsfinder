@@ -1,0 +1,14 @@
+{
+    "fingerprints": [
+        {
+            "file": "lib/OX.php",
+            "signature": "OpenX"
+        }
+    ],
+    "versions": [
+        {
+            "file": "constants.php",
+            "regex": "VERSION', '(?P<version>.*)'"
+        }
+    ]
+}

@@ -1,0 +1,22 @@
+{
+    "fingerprints": [
+        {
+            "file": "config/index.php",
+            "signature": "PrestaShop"
+        },
+        {
+            "file": "Index.php",
+            "signature": "PrestaShop"
+        }
+    ],
+    "versions": [
+        {
+            "file": "config/settings.inc.php",
+            "regex": "define\\('_PS_VERSION_',\\s*'(?P<version>.*)'\\)"
+        },
+        {
+            "file": "config/autoload.php",
+            "regex": "define\\('_PS_VERSION_',\\s*'(?P<version>.*)'\\)"
+        }
+    ]
+}

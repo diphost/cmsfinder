@@ -1,0 +1,20 @@
+{
+    "fingerprints": [
+        {
+            "file": "bitrix/modules/main/classes/general/component.php",
+            "signature": "Bitrix"
+        },
+        {
+            "file": "bitrix/modules/main/classes/general/version.php"
+        }
+    ],
+    "last": {
+        "last": "17.0"
+    },
+    "versions": [
+        {
+            "file": "bitrix/modules/main/classes/general/version.php",
+            "regex": "define\\(\"SM_VERSION\",\"(?P<version>.*)\"\\)"
+        }
+    ]
+}

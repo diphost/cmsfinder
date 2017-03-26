@@ -1,0 +1,18 @@
+{
+    "fingerprints": [
+        {
+            "file": "cart.php",
+            "signature": "X-Cart"
+        }
+    ],
+    "versions": [
+        {
+            "file": "VERSION",
+            "regex": "Version (?P<version>.*)"
+        },
+        {
+            "file": "Includes/install/install_settings.php",
+            "regex": "LC_VERSION', '(?P<version>.*)'"
+        }
+    ]
+}

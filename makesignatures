@@ -1,0 +1,26 @@
+#!/usr/bin/env python2.7
+# -*- coding: utf-8 -*-
+
+""" Read directory with per CMS signature JSON files and concatinate them to 
+    one JSON file
+"""
+
+import os
+import json
+
+if __name__ == "__main__":
+    signatures = {}
+    # save root of repo
+    pwd = os.getcwd()
+    # read cms signature files
+    for cms in os.listdir(pwd + "/signatures"):
+        filename = os.path.join(pwd + "/signatures", cms)
+        if os.path.isfile(filename):
+            with open(filename) as f:
+                # add cms signature to full signatures dict
+                signatures[cms.split('.')[0]] = json.load(f)
+    # write full signatures.json file
+    with open(pwd + "/signatures.json", "w") as f:
+            json.dump(signatures,f)
+    # git add new signatures file
+    os.system("git add " + pwd + '/signatures.json')

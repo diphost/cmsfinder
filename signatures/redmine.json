@@ -1,0 +1,14 @@
+{
+    "fingerprints": [
+        {
+            "file": "lib/redmine.rb",
+            "signature": "redmine"
+        }
+    ],
+    "versions": [
+        {
+            "file": "doc/CHANGELOG",
+            "regex": "==.* v(?P<version>.*)"
+        }
+    ]
+}

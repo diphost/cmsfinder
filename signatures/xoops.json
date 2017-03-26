@@ -1,0 +1,13 @@
+{
+    "fingerprints": [
+        {
+            "file": "include/xoops.js"
+        }
+    ],
+    "versions": [
+        {
+            "file": "include/version.php",
+            "regex": "XOOPS_VERSION.*XOOPS (?P<version>.*)'"
+        }
+    ]
+}

@@ -1,0 +1,200 @@
+#!/usr/bin/env python2.7
+# -*- coding: utf-8 -*-
+
+import sys,os
+import json
+import subprocess
+import logging
+import argparse
+import mmap
+import re
+
+logging.basicConfig(format="%(message)s")
+logger = logging.getLogger(__name__)
+
+def vcmp(version1, version2):
+    def normalize(v):
+        return [int(x) for x in re.sub(r'(\.0+)*$','', v).split(".")]
+    return cmp(normalize(version1), normalize(version2))
+
+def fileContains(filename, string):
+    logger.debug("Filename: %s String: %s", filename, string)
+    with open(filename) as f:
+        s = mmap.mmap(f.fileno(), 0, access=mmap.ACCESS_READ)
+        if s.find(string) != -1:
+            return True
+    return False
+
+def checkcms(path):
+    for app in signatures:
+        fl_matched = False
+        for f in signatures[app]['fingerprints']:
+            testfile = path + '/' + f['file']
+            if not os.path.exists(testfile):
+                continue
+            logger.debug("Signature file %s found in %s for %s", f['file'], path, app)
+            if 'signature' in f:
+                if fileContains(testfile, f['signature']):
+                    logger.debug("Fingerprint match for %s found in %s", app, testfile)
+                else:
+                    continue
+            if 'exclude' in f:
+                if fileContains(testfile, f['exclude']):
+                    logger.debug("Fingerprint matches exclude, skipping match")
+                    continue
+            fl_matched = True
+            break
+        if not fl_matched:
+            #logger.debug("No fingerprint matches for %s in %s", app, path)
+            continue
+        ver = last = supported = u""
+        for v in signatures[app]['versions']:
+            testfile = path + '/' + v['file']
+            if not os.path.exists(testfile):
+                continue
+            logger.debug("Version file %s found in %s for %s", v['file'], path, app)
+            with open(testfile) as t:
+                s = mmap.mmap(t.fileno(), 0, access=mmap.ACCESS_READ)
+                if 'regex' in v:
+                    r = v['regex']
+                    if 'exclude' in v:
+                        e = v['exclude']
+                        if re.search(e, s):
+                                logger.debug("Version file found but matched exclude")
+                                continue
+                    s.seek(0)
+                    if 'multiline' in v:
+                        a = re.finditer(r"(?m)"+r, s)
+                        if not a:
+                            continue
+                        for m in a:
+                            if m:
+                                ver += "." + m.group('version')
+                        ver = re.sub(r"^\.", "", ver)
+                    else:
+                        m = re.search(r, s)
+                        if m:
+                            ver = m.group('version')
+                if 'flatfile' in v:
+                    a = re.finditer(r"(?m)^(?P<version>.*)$", s)
+                    if not a:
+                        continue
+                    for m in a:
+                        if m:
+                            ver = m.group('version')
+                        break
+                if ver != "":
+                    if  'filter' in v: 
+                        ver = re.sub(v['filter'], ".", ver)
+                    ver = re.sub(r"\r", "", ver)
+            if ver == "":
+                logger.warn("* %s CMS signature (%s) match but unable to get version information", path, app)
+            else:
+                break
+        if ver != "":
+            if 'last' in signatures[app]:
+                lastv = ""
+                if 'last' in signatures[app]['last']:
+                    lastv = signatures[app]['last']['last']
+                for br in signatures[app]['last']:
+                    if ver.startswith(br):
+                        logger.debug("Found known branch %s for version %s", br, ver)
+                        lastv = signatures[app]['last'][br]
+                if lastv != "":
+                        c = vcmp(ver, signatures[app]['last'][br])
+                        if c == 0:
+                            last = "=" + signatures[app]['last'][br]
+                        elif c < 0:
+                            last = "<" + signatures[app]['last'][br]
+                        elif c > 0:
+                            last = ">" + signatures[app]['last'][br]
+            if 'support' in signatures[app]:
+                for br in signatures[app]['support']:
+                    if ver.startswith(br):
+                        logger.debug("Found known EOL branch %s for version %s", br, ver)
+                        supported = signatures[app]['support'][br]
+                if supported == "" and 'eol' in signatures[app]['support']:
+                    c = vcmp(ver, signatures[app]['support']['eol'])
+                    if c == 0:
+                        supported = "current"
+                    elif c < 0:
+                        supported = "EOL"
+                    elif c > 0:
+                        supported = "current"
+                if supported == "":
+                    supported = "EOL"
+        if ver == "":
+            ver = "unknown"
+        if last == "":
+            last = "unknown"
+        if supported == "":
+            supported = "unknown"
+        print("%s %s '%s' '%s' %s" % (path, app, ver, last, supported))
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        '-v', action='count', default=0,
+        help='increase verbosity of the logging, -vvv for debug',
+    )
+    parser.add_argument(
+        '-s', metavar="FILENAME", nargs=1, action='store', default='signatures.json',
+        help='Signatures file',
+    )
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument(
+        '-l', metavar="FILENAME", nargs='?', action='store',
+        help='Site paths from file',
+    )
+    group.add_argument(
+        'PATH', type=str, nargs='?', help='Path to site'
+    )
+    args = parser.parse_args()
+    try:
+        if args.v >= 3:
+            logger.setLevel(logging.DEBUG)
+        elif args.v >= 2:
+            logger.setLevel(logging.INFO)
+        elif args.v >= 1:
+            logger.setLevel(logging.WARNING)
+        elif args.v == 0:
+            logger.setLevel(logging.ERROR)
+        signaturesfile = os.path.abspath(args.s)
+        path = ""
+        listfile = ""
+        if args.PATH:
+            path = os.path.abspath(args.PATH)
+        elif args.l:
+            listfile = os.path.abspath(args.l)
+    except:
+        logging.error("%s",  sys.exc_info()[1])
+        sys.exit(1)
+    signatures = {}
+    if not os.path.exists(signaturesfile):
+        logger.error("Signatures file %s not exists", signaturesfile)
+        sys.exit(1)
+    try:
+        with open(signaturesfile) as f:
+            signatures = json.load(f)
+    except:
+        logger.error("%s", sys.exc_info()[1])
+        sys.exit(1)
+    if path != "":
+        if not os.path.exists(path):
+            logger.error("Site path %s not exists", path)
+            sys.exit(1)
+        logger.info("Test site: %s", path)
+        checkcms(path)
+    elif listfile != "":
+        if not os.path.exists(listfile):
+            logger.error("File with sites paths %s not exists", listfile)
+            sys.exit(1)
+        with open(listfile) as f:
+            for line in f:
+                line = os.path.abspath(line.rstrip())
+                if not os.path.exists(line):
+                    logger.warn("Site path %s not exists", line)
+                    continue
+                logger.info("Test site: %s", line)
+                checkcms(line)
+

@@ -1,0 +1,14 @@
+{
+    "fingerprints": [
+        {
+            "file": "config.local.php",
+            "signature": "cs-cart"
+        }
+    ],
+    "versions": [
+        {
+            "file": "config.php",
+            "regex": "define('PRODUCT_VERSION',\\s*'(?P<version>.*)')"
+        }
+    ]
+}
