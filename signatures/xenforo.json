@@ -1,0 +1,14 @@
+{
+    "fingerprints": [
+        {
+            "file": "library/XenForo/Application.php",
+            "signature": "xenforo"
+        }
+    ],
+    "versions": [
+        {
+            "file": "library/XenForo/Application.php",
+            "regex": "\\$version\\s*=\\s*'(?P<version>.*)'"
+        }
+    ]
+}
