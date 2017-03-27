@@ -21,7 +21,10 @@ It is designed to search for potentially vulnerable CMS. This helps sell custome
 Usage
 -----
 
-```./cmsfinder --help
+### Command help
+
+```sh
+./cmsfinder --help
 usage: cmsfinder [-h] [-v] [-s FILENAME] [-l [FILENAME] | PATH]
 
 positional arguments:
@@ -34,9 +37,42 @@ positional arguments:
     -l [FILENAME]  Site paths from file
 ```
 
+### Scan single path (DocumentRoot)
+
+```sh
+./cmsfinder -v /var/www/www-root/htdocs
+```
+
+### Scan paths from file
+
+```sh
+./cmsfinder -v -l sitelist.lst >result.lst
+```
+
+### Result string
+
+> PATH CMS_NAME VERSION LAST_VERSION SUPPORT
+
+* PATH - path of site, i.e. DocumentRoot
+* CMS_NAME - friendly name of cms signature
+* VERSION - detected CMS version
+* LAST_VERSION - newest version on detected branch with one of the prefix:
+** '<' - detected version is older than latest version on this branch
+** '=' - detected version is the freshest version on this branch
+** '>' - detected version is newer than latest version on this branch (oh!)
+* SUPPORT - support level
+** 'eol' - End Of Life - this branch not supported yet
+** 'limited' - may or may not get updates
+** 'supported' - fully supported
+** 'current' - the freshest supported branch
+
 TODO
 ----
 
+* Anime chan mascot
+* Developers Guide
+* Implement github or gitlab flow
+* Make custom signature sets
 * Cover the code with comments
 * Fill in supported versions for all CMS. Only Drupal, WordPress and Joomla presents
 * Add more popular CMSes
