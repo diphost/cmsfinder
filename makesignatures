@@ -14,11 +14,12 @@ if __name__ == "__main__":
     pwd = os.getcwd()
     # read cms signature files
     for cms in os.listdir(pwd + "/signatures"):
-        filename = os.path.join(pwd + "/signatures", cms)
+        name = cms.split('.')[0]
+        filename = os.path.join(pwd + "/signatures", name + ".json")
         if os.path.isfile(filename):
             with open(filename) as f:
                 # add cms signature to full signatures dict
-                signatures[cms.split('.')[0]] = json.load(f)
+                signatures[name] = json.load(f)
     # write full signatures.json file
     with open(pwd + "/signatures.json", "w") as f:
             json.dump(signatures,f)

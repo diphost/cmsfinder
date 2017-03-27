@@ -1,7 +1,7 @@
 CMS Finder
 ==========
 
-Detect CMS software type and version in specified path. CMS signatures and actual versions database.
+Detect Web CMS software type and version in specified path. CMS signatures and actual versions database.
 
 Initially based on weakly maintained https://github.com/JamesDooley/VersionFinder
 

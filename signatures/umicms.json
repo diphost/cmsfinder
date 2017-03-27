@@ -5,6 +5,9 @@
             "signature": "modules/autoupdate/system_version"
         },
         {
+            "file": "cache/reg"
+        },
+        {
             "file": "README.md",
             "signature": "UMI.CMS"
         }
@@ -16,6 +19,11 @@
         {
             "file": "sys-temp/runtime-cache/registry",
             "regex": "\"modules/autoupdate/system_version\";i:(\\d+);.*?i:\\1;s:\\d+:\"(?P<version>[^\\\"]+)\""
+        },
+        {
+            "file": "cache/reg",
+            "regex": "\"modules/autoupdate/system_version\";i:(\\d+);.*?i:\\1;s:\\d+:\"(?P<version>[^\\\"]+)\""
         }
     ]
 }
+

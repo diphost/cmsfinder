@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 def vcmp(version1, version2):
     def normalize(v):
-        return [int(x) for x in re.sub(r'(\.0+)*$','', v).split(".")]
+        return [int(x) for x in re.sub(r'[^0-9\.]+', '', re.sub(r'(\.0+)*$', '', v)).split(".")]
     return cmp(normalize(version1), normalize(version2))
 
 def fileContains(filename, string):
@@ -101,13 +101,13 @@ def checkcms(path):
                         logger.debug("Found known branch %s for version %s", br, ver)
                         lastv = signatures[app]['last'][br]
                 if lastv != "":
-                        c = vcmp(ver, signatures[app]['last'][br])
+                        c = vcmp(ver, lastv)
                         if c == 0:
-                            last = "=" + signatures[app]['last'][br]
+                            last = "=" + lastv
                         elif c < 0:
-                            last = "<" + signatures[app]['last'][br]
+                            last = "<" + lastv
                         elif c > 0:
-                            last = ">" + signatures[app]['last'][br]
+                            last = ">" + lastv
             if 'support' in signatures[app]:
                 for br in signatures[app]['support']:
                     if ver.startswith(br):
