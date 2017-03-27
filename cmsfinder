@@ -138,7 +138,7 @@ if __name__ == "__main__":
         help='increase verbosity of the logging, -vvv for debug',
     )
     parser.add_argument(
-        '-s', metavar="FILENAME", nargs=1, action='store', default='signatures.json',
+        '-s', metavar="FILENAME", nargs='?', action='store', default='signatures.json',
         help='Signatures file',
     )
     group = parser.add_mutually_exclusive_group()
