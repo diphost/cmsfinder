@@ -51,20 +51,26 @@ positional arguments:
 
 ### Result string
 
-> PATH CMS_NAME VERSION LAST_VERSION SUPPORT
+> PATH CMS VERSION LAST SUPPORT
 
 * PATH - path of site, i.e. DocumentRoot
-* CMS_NAME - friendly name of cms signature
+* CMS - friendly name of cms signature
 * VERSION - detected CMS version
-* LAST_VERSION - newest version on detected branch with one of the prefix:
-** '<' - detected version is older than latest version on this branch
-** '=' - detected version is the freshest version on this branch
-** '>' - detected version is newer than latest version on this branch (oh!)
+* LAST - newest version on detected branch with one of the prefix:
+  * '<' - detected version is older than latest version on this branch
+  * '=' - detected version is the freshest version on this branch
+  * '>' - detected version is newer than latest version on this branch (oh!)
 * SUPPORT - support level
-** 'eol' - End Of Life - this branch not supported yet
-** 'limited' - may or may not get updates
-** 'supported' - fully supported
-** 'current' - the freshest supported branch
+  * 'eol' - End Of Life - this branch not supported yet
+  * 'limited' - may or may not get updates
+  * 'supported' - fully supported
+  * 'current' - the freshest supported branch
+
+```
+~$ ./cmsfinder /var/www/www-root/htdocs
+/var/www/www-root/htdocs wordpress 4.6.2 <4.6.4 limited
+~$ 
+```
 
 TODO
 ----
