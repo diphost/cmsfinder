@@ -22,5 +22,8 @@
             "file": "engine/inc/options.php",
             "regex": "\\$save_con\\['version_id'\\]\\s*=\\s*[\"|'](?P<version>[0-9.]*)[\"|']"
         }
-    ]
+    ],
+    "last" : {
+        "last" : "11.2"
+    }
 }
