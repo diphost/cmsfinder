@@ -16,5 +16,11 @@
             "file": "bitrix/modules/main/classes/general/version.php",
             "regex": "define\\(\"SM_VERSION\",\"(?P<version>.*)\"\\)"
         }
-    ]
+    ],
+    "last" : {
+        "last" : "17.0"
+    },
+    "support" : {
+        "eol" : "12.0"
+    }
 }
