@@ -111,7 +111,7 @@ def checkcms(path):
             if 'support' in signatures[app]:
                 for br in signatures[app]['support']:
                     if ver.startswith(br):
-                        logger.debug("Found known EOL branch %s for version %s", br, ver)
+                        logger.debug("Found known branch %s for version %s", br, ver)
                         supported = signatures[app]['support'][br]
                 if supported == "" and 'eol' in signatures[app]['support']:
                     c = vcmp(ver, signatures[app]['support']['eol'])
