@@ -21,7 +21,7 @@ def fileContains(filename, string):
     logger.debug("Filename: %s String: %s", filename, string)
     with open(filename) as f:
         s = mmap.mmap(f.fileno(), 0, access=mmap.ACCESS_READ)
-        if s.find(string) != -1:
+        if re.search(string, s):
             return True
     return False
 
