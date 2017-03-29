@@ -44,7 +44,7 @@
         {
             "file": "libraries/cms/version/version.php",
             "multiline": 1,
-            "regex": "(?:RELEASE|DEV_LEVEL)\\s*=\\s*'(?P<version>.*)'"
+            "regex": "(?:\\$RELEASE|\\$DEV_LEVEL)\\s*=\\s*'(?P<version>.*)'"
         },
         {
             "file": "libraries/joomla/version.php",
