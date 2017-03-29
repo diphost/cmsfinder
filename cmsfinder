@@ -87,6 +87,7 @@ def checkcms(path):
                     if  'filter' in v: 
                         ver = re.sub(v['filter'], ".", ver)
                     ver = re.sub(r"\r", "", ver)
+                    ver = re.sub(r"\s+", "", ver)
             if ver == "":
                 logger.warn("* %s CMS signature (%s) match but unable to get version information", path, app)
             else:
