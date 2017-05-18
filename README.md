@@ -18,6 +18,8 @@ What for
 
 It is designed to search for potentially vulnerable CMS. This helps sell customers a complementary service
 
+![CMS Finder](cmsfinder.png)
+
 Usage
 -----
 
